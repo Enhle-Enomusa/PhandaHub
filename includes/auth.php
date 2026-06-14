@@ -9,7 +9,7 @@ function is_admin()     { return !empty($_SESSION['admin_id']); }
 
 function require_login() {
     if (!is_logged_in()) {
-        header('Location: ' . base_url('login.php?msg=login_required'));
+        header('Location: ' . base_url('pages/login.php?msg=login_required'));
         exit;
     }
 }
@@ -21,13 +21,35 @@ function require_admin() {
     }
 }
 
-// Build a URL relative to project root so links work in any subfolder install.
+// Build correct URLs for a site installed directly under htdocs.
 function base_url($path = '') {
-    $script = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
-    // If we are inside /admin, step one folder up.
-    if (basename($script) === 'admin') $script = dirname($script);
-    if ($script === '/' || $script === '\\') $script = '';
-    return $script . '/' . ltrim($path, '/');
+    $path = ltrim((string)$path, '/');
+
+    // Full external URL: leave it unchanged.
+    if (preg_match('#^https?://#i', $path)) {
+        return $path;
+    }
+
+    // These folders/files live directly under htdocs.
+    $root_items = ['admin/', 'pages/', 'css/', 'js/', 'images/', 'uploads/', 'db/', 'index.php'];
+    foreach ($root_items as $item) {
+        if ($path === rtrim($item, '/') || substr($path, 0, strlen($item)) === $item) {
+            return '/' . $path;
+        }
+    }
+
+    // If a pages/*.php file calls base_url('shop.php'), keep it in /pages.
+    $current = str_replace('\\', '/', $_SERVER['SCRIPT_NAME'] ?? '');
+    if (strpos($current, '/pages/') !== false) {
+        return '/pages/' . $path;
+    }
+
+    // If an admin/*.php file calls base_url('dashboard.php'), keep it in /admin.
+    if (strpos($current, '/admin/') !== false) {
+        return '/admin/' . $path;
+    }
+
+    return '/' . $path;
 }
 
 // Simple flash-message helpers.

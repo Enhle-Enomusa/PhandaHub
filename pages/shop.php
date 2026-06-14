@@ -1,7 +1,7 @@
 <?php
 // shop.php - browse all listings
-require_once __DIR__ . '/includes/auth.php';
-require_once __DIR__ . '/includes/db.php';
+require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/db.php';
 $page_title = 'Shop';
 
 $search = trim($_GET['q'] ?? '');
@@ -14,7 +14,7 @@ if ($search !== '') {
     $items = $conn->query($sql . " ORDER BY p.created_at DESC");
 }
 
-include __DIR__ . '/includes/header.php';
+include __DIR__ . '/../includes/header.php';
 ?>
 <h1 style="color:var(--green-dark);margin-bottom:10px;">Shop the marketplace</h1>
 <p style="color:var(--muted);margin-bottom:18px;">All items listed by PhandaHub members.</p>
@@ -30,7 +30,7 @@ include __DIR__ . '/includes/header.php';
   <div class="grid grid-4">
     <?php while ($p = $items->fetch_assoc()): ?>
       <div class="product">
-        <img src="<?= e($p['image']) ?>" alt="<?= e($p['title']) ?>">
+        <img src="<?= e(base_url($p['image'])) ?>" alt="<?= e($p['title']) ?>">
         <div class="product-body">
           <div class="product-title"><?= e($p['title']) ?></div>
           <div class="product-price">R <?= number_format($p['price'], 2) ?></div>
@@ -45,4 +45,4 @@ include __DIR__ . '/includes/header.php';
   </div>
 <?php endif; ?>
 
-<?php include __DIR__ . '/includes/footer.php'; ?>
+<?php include __DIR__ . '/../includes/footer.php'; ?>

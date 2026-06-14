@@ -73,7 +73,7 @@ include __DIR__ . '/../includes/header.php';
           <td><?= (int)$p['stock'] ?></td>
           <td><?= e($p['category']) ?></td>
           <td>
-            <a href="<?= base_url('product.php?id='.$p['id']) ?>" class="btn btn-ghost">View</a>
+            <a href="<?= base_url('pages/product.php?id='.$p['id']) ?>" class="btn btn-ghost">View</a>
             <a href="?edit=<?= $p['id'] ?>" class="btn btn-gold">Edit</a>
             <a href="?delete=<?= $p['id'] ?>" class="btn btn-danger" onclick="return confirm('Delete listing?')">Delete</a>
           </td>

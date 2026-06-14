@@ -1,7 +1,7 @@
 <?php
 // dashboard.php - main user dashboard
-require_once __DIR__ . '/includes/auth.php';
-require_once __DIR__ . '/includes/db.php';
+require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/db.php';
 require_login();
 $page_title = 'Dashboard';
 
@@ -20,10 +20,10 @@ $r = $conn->query("SELECT id, total, created_at FROM orders WHERE user_id=$uid O
 while ($row = $r->fetch_assoc()) $activity[] = ['type' => 'Order',  'text' => 'Order #' . $row['id'] . ' for R ' . number_format($row['total'],2), 'when' => $row['created_at']];
 usort($activity, fn($a,$b) => strcmp($b['when'], $a['when']));
 
-include __DIR__ . '/includes/header.php';
+include __DIR__ . '/../includes/header.php';
 ?>
 <div class="layout">
-  <?php include __DIR__ . '/includes/sidebar.php'; ?>
+  <?php include __DIR__ . '/../includes/sidebar.php'; ?>
   <div>
     <h1 style="margin-bottom:18px;">Welcome, <?= e($_SESSION['user_name']) ?>!</h1>
 
@@ -61,4 +61,4 @@ include __DIR__ . '/includes/header.php';
     </div>
   </div>
 </div>
-<?php include __DIR__ . '/includes/footer.php'; ?>
+<?php include __DIR__ . '/../includes/footer.php'; ?>

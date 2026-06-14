@@ -1,7 +1,7 @@
 <?php
 // sell.php - create a new product listing
-require_once __DIR__ . '/includes/auth.php';
-require_once __DIR__ . '/includes/db.php';
+require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/db.php';
 require_login();
 $page_title = 'List New Item';
 $errors = [];
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (!$errors) {
             $fname = 'p_' . time() . '_' . bin2hex(random_bytes(4)) . '.' . $ext;
-            $dest  = __DIR__ . '/uploads/' . $fname;
+            $dest  = __DIR__ . '/../uploads/' . $fname;
             if (move_uploaded_file($_FILES['image']['tmp_name'], $dest)) {
                 $image_path = 'uploads/' . $fname;
             } else {
@@ -56,10 +56,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-include __DIR__ . '/includes/header.php';
+include __DIR__ . '/../includes/header.php';
 ?>
 <div class="layout">
-  <?php include __DIR__ . '/includes/sidebar.php'; ?>
+  <?php include __DIR__ . '/../includes/sidebar.php'; ?>
   <div>
     <div class="card form-card wide" style="margin:0;">
       <h1>List a new item</h1>
@@ -105,4 +105,4 @@ include __DIR__ . '/includes/header.php';
     </div>
   </div>
 </div>
-<?php include __DIR__ . '/includes/footer.php'; ?>
+<?php include __DIR__ . '/../includes/footer.php'; ?>

@@ -1,7 +1,7 @@
 <?php
 // cart.php - shopping cart
-require_once __DIR__ . '/includes/auth.php';
-require_once __DIR__ . '/includes/db.php';
+require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/db.php';
 require_login();
 $page_title = 'Cart';
 $uid = (int)$_SESSION['user_id'];
@@ -44,10 +44,10 @@ $items = $conn->query("SELECT c.id, c.quantity, p.id AS pid, p.title, p.price, p
 $rows = []; $total = 0;
 while ($r = $items->fetch_assoc()) { $r['subtotal'] = $r['price'] * $r['quantity']; $total += $r['subtotal']; $rows[] = $r; }
 
-include __DIR__ . '/includes/header.php';
+include __DIR__ . '/../includes/header.php';
 ?>
 <div class="layout">
-  <?php include __DIR__ . '/includes/sidebar.php'; ?>
+  <?php include __DIR__ . '/../includes/sidebar.php'; ?>
   <div>
     <h1 style="color:var(--green-dark);margin-bottom:16px;">Your cart</h1>
 
@@ -59,7 +59,7 @@ include __DIR__ . '/includes/header.php';
         <?php foreach ($rows as $r): ?>
           <tr>
             <td style="display:flex;align-items:center;gap:10px;">
-              <img src="<?= e($r['image']) ?>" alt="" style="width:50px;height:50px;object-fit:cover;border-radius:6px;">
+              <img src="<?= e(base_url($r['image'])) ?>" alt="" style="width:50px;height:50px;object-fit:cover;border-radius:6px;">
               <a href="<?= base_url('product.php?id='.$r['pid']) ?>"><?= e($r['title']) ?></a>
             </td>
             <td>R <?= number_format($r['price'],2) ?></td>
@@ -78,4 +78,4 @@ include __DIR__ . '/includes/header.php';
     <?php endif; ?>
   </div>
 </div>
-<?php include __DIR__ . '/includes/footer.php'; ?>
+<?php include __DIR__ . '/../includes/footer.php'; ?>

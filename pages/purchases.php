@@ -1,16 +1,16 @@
 <?php
 // purchases.php - the logged-in user's orders
-require_once __DIR__ . '/includes/auth.php';
-require_once __DIR__ . '/includes/db.php';
+require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/db.php';
 require_login();
 $page_title = 'Purchases';
 $uid = (int)$_SESSION['user_id'];
 
 $orders = $conn->query("SELECT * FROM orders WHERE user_id=$uid ORDER BY created_at DESC");
-include __DIR__ . '/includes/header.php';
+include __DIR__ . '/../includes/header.php';
 ?>
 <div class="layout">
-  <?php include __DIR__ . '/includes/sidebar.php'; ?>
+  <?php include __DIR__ . '/../includes/sidebar.php'; ?>
   <div>
     <h1 style="color:var(--green-dark);margin-bottom:16px;">My purchases</h1>
 
@@ -39,4 +39,4 @@ include __DIR__ . '/includes/header.php';
     <?php endif; ?>
   </div>
 </div>
-<?php include __DIR__ . '/includes/footer.php'; ?>
+<?php include __DIR__ . '/../includes/footer.php'; ?>

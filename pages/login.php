@@ -1,7 +1,7 @@
 <?php
 // login.php - user sign in
-require_once __DIR__ . '/includes/auth.php';
-require_once __DIR__ . '/includes/db.php';
+require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/db.php';
 $page_title = 'Sign In';
 $errors = [];
 
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-include __DIR__ . '/includes/header.php';
+include __DIR__ . '/../includes/header.php';
 ?>
 <div class="card form-card">
   <h1>Sign in</h1>
@@ -56,4 +56,4 @@ include __DIR__ . '/includes/header.php';
     <p class="form-foot" style="font-size:12px;">Demo: <code>thabo@demo.com</code> / <code>password123</code></p>
   </form>
 </div>
-<?php include __DIR__ . '/includes/footer.php'; ?>
+<?php include __DIR__ . '/../includes/footer.php'; ?>

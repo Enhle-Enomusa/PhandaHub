@@ -1,7 +1,7 @@
 <?php
 // my_listings.php - user's own listings with edit/delete
-require_once __DIR__ . '/includes/auth.php';
-require_once __DIR__ . '/includes/db.php';
+require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/db.php';
 require_login();
 $page_title = 'My Listings';
 $uid = (int)$_SESSION['user_id'];
@@ -15,10 +15,10 @@ if (isset($_GET['delete'])) {
 }
 
 $items = $conn->query("SELECT * FROM products WHERE user_id=$uid ORDER BY created_at DESC");
-include __DIR__ . '/includes/header.php';
+include __DIR__ . '/../includes/header.php';
 ?>
 <div class="layout">
-  <?php include __DIR__ . '/includes/sidebar.php'; ?>
+  <?php include __DIR__ . '/../includes/sidebar.php'; ?>
   <div>
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
       <h1 style="color:var(--green-dark);">My listings</h1>
@@ -31,7 +31,7 @@ include __DIR__ . '/includes/header.php';
       <div class="grid grid-3">
         <?php while ($p = $items->fetch_assoc()): ?>
           <div class="product">
-            <img src="<?= e($p['image']) ?>" alt="">
+            <img src="<?= e(base_url($p['image'])) ?>" alt="">
             <div class="product-body">
               <div class="product-title"><?= e($p['title']) ?></div>
               <div class="product-price">R <?= number_format($p['price'],2) ?></div>
@@ -47,4 +47,4 @@ include __DIR__ . '/includes/header.php';
     <?php endif; ?>
   </div>
 </div>
-<?php include __DIR__ . '/includes/footer.php'; ?>
+<?php include __DIR__ . '/../includes/footer.php'; ?>

@@ -1,7 +1,7 @@
 <?php
 // profile.php - profile, recent listings, recent purchases, wallet
-require_once __DIR__ . '/includes/auth.php';
-require_once __DIR__ . '/includes/db.php';
+require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/db.php';
 require_login();
 $page_title = 'Profile';
 $uid = (int)$_SESSION['user_id'];
@@ -21,10 +21,10 @@ $user      = $conn->query("SELECT * FROM users WHERE id=$uid")->fetch_assoc();
 $listings  = $conn->query("SELECT * FROM products WHERE user_id=$uid ORDER BY created_at DESC LIMIT 3");
 $purchases = $conn->query("SELECT * FROM orders   WHERE user_id=$uid ORDER BY created_at DESC LIMIT 3");
 
-include __DIR__ . '/includes/header.php';
+include __DIR__ . '/../includes/header.php';
 ?>
 <div class="layout">
-  <?php include __DIR__ . '/includes/sidebar.php'; ?>
+  <?php include __DIR__ . '/../includes/sidebar.php'; ?>
   <div>
     <h1 style="color:var(--green-dark);margin-bottom:16px;">My profile</h1>
 
@@ -54,7 +54,7 @@ include __DIR__ . '/includes/header.php';
         <div class="card empty" style="grid-column:1/-1;">No listings yet. <a href="<?= base_url('sell.php') ?>">List one now</a>.</div>
       <?php else: while ($p = $listings->fetch_assoc()): ?>
         <div class="product">
-          <img src="<?= e($p['image']) ?>" alt="">
+          <img src="<?= e(base_url($p['image'])) ?>" alt="">
           <div class="product-body">
             <div class="product-title"><?= e($p['title']) ?></div>
             <div class="product-price">R <?= number_format($p['price'],2) ?></div>
@@ -78,4 +78,4 @@ include __DIR__ . '/includes/header.php';
     </div>
   </div>
 </div>
-<?php include __DIR__ . '/includes/footer.php'; ?>
+<?php include __DIR__ . '/../includes/footer.php'; ?>

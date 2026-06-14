@@ -1,7 +1,7 @@
 <?php
 // register.php - account creation
-require_once __DIR__ . '/includes/auth.php';
-require_once __DIR__ . '/includes/db.php';
+require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/db.php';
 $page_title = 'Register';
 $errors = [];
 
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-include __DIR__ . '/includes/header.php';
+include __DIR__ . '/../includes/header.php';
 ?>
 <div class="card form-card">
   <h1>Create your account</h1>
@@ -79,4 +79,4 @@ include __DIR__ . '/includes/header.php';
     <p class="form-foot">Already have an account? <a href="<?= base_url('login.php') ?>">Sign in</a></p>
   </form>
 </div>
-<?php include __DIR__ . '/includes/footer.php'; ?>
+<?php include __DIR__ . '/../includes/footer.php'; ?>

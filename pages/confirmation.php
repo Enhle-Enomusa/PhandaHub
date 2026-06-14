@@ -1,7 +1,7 @@
 <?php
 // confirmation.php - order success
-require_once __DIR__ . '/includes/auth.php';
-require_once __DIR__ . '/includes/db.php';
+require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/db.php';
 require_login();
 $page_title = 'Order Confirmed';
 
@@ -19,7 +19,7 @@ if (!$order) {
 
 $items = $conn->query("SELECT * FROM order_items WHERE order_id=$order_id");
 
-include __DIR__ . '/includes/header.php';
+include __DIR__ . '/../includes/header.php';
 ?>
 <div class="card form-card wide" style="text-align:center;">
   <div class="tick">✓</div>
@@ -45,4 +45,4 @@ include __DIR__ . '/includes/header.php';
     <a href="<?= base_url('shop.php') ?>" class="btn btn-outline">Continue shopping</a>
   </div>
 </div>
-<?php include __DIR__ . '/includes/footer.php'; ?>
+<?php include __DIR__ . '/../includes/footer.php'; ?>

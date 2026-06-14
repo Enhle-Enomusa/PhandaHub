@@ -1,7 +1,7 @@
 <?php
 // payment.php - fake payment gateway (for academic prototype only)
-require_once __DIR__ . '/includes/auth.php';
-require_once __DIR__ . '/includes/db.php';
+require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/db.php';
 require_login();
 $page_title = 'Secure Payment';
 $uid = (int)$_SESSION['user_id'];
@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-include __DIR__ . '/includes/header.php';
+include __DIR__ . '/../includes/header.php';
 ?>
 <div class="card payment-card">
   <div class="brand-row">
@@ -103,4 +103,4 @@ include __DIR__ . '/includes/header.php';
     <p class="form-foot"><a href="<?= base_url('cart.php') ?>">Cancel and return to cart</a></p>
   </form>
 </div>
-<?php include __DIR__ . '/includes/footer.php'; ?>
+<?php include __DIR__ . '/../includes/footer.php'; ?>
