@@ -3,9 +3,13 @@
 require_once __DIR__ . '/auth.php';
 ?>
 <aside class="sidebar">
+  <input type="checkbox" id="sidebar-toggle" class="sidebar-toggle">
+  <label for="sidebar-toggle" class="sidebar-mobile-btn">☰ Menu</label>
+
   <a href="<?= base_url('index.php') ?>" class="sidebar-brand">
     <img src="<?= base_url('images/logo.png') ?>" alt="PhandaHub">
   </a>
+
   <nav class="sidebar-nav">
     <a href="<?= base_url('dashboard.php') ?>">Dashboard</a>
     <a href="<?= base_url('my_listings.php') ?>">My Listings</a>
